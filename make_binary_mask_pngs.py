@@ -8,7 +8,7 @@ def process_fold(fold):
     masks = np.load('data/' + fold + '/masks/fold1/masks.npy')
 
     os.makedirs('data/' + fold + '_images')
-    os.make_dir('data/' + fold + '_masks')
+    os.makedirs('data/' + fold + '_masks')
 
     for i in range(0, images.shape[0]):
         cv2.imwrite(os.path.join('data/' + fold + '_images', str(i).zfill(5) + '.png'),
