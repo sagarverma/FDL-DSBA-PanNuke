@@ -3,9 +3,9 @@ import numpy as np
 import cv2
 
 def process_fold(fold):
-    images = np.load('data/' + fold + '/images/fold1/images.npy')
-    types = np.load('data/' + fold + '/images/fold1/types.npy')
-    masks = np.load('data/' + fold + '/masks/fold1/masks.npy')
+    images = np.load('data/' + fold + '/images/' + fold + '/images.npy')
+    types = np.load('data/' + fold + '/images/' + fold + '/types.npy')
+    masks = np.load('data/' + fold + '/masks/' + fold + '/masks.npy')
     # images = np.zeros((100,32,32,3))
     # masks = np.zeros((100,32,32,6))
 
