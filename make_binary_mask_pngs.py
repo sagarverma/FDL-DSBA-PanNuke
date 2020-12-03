@@ -23,6 +23,7 @@ def process_fold(fold):
                 masks[i, :, :, 3] + \
                 masks[i, :, :, 4] + \
                 masks[i, :, :, 5]
+        mask[mask > 0] = 255
 
         cv2.imwrite(os.path.join('data/' + fold + '_masks', str(i).zfill(5) + '.png'),
                     mask.astype(np.uint8))
