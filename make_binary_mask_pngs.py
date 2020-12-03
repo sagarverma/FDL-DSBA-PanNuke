@@ -27,6 +27,6 @@ def process_fold(fold):
         cv2.imwrite(os.path.join('data/' + fold + '_masks', str(i).zfill(5) + '.png'),
                     mask.astype(np.uint8))
 
-process_fold('fold_1')
-process_fold('fold_2')
-process_fold('fold_3')
+process_fold('fold1')
+process_fold('fold2')
+process_fold('fold3')
