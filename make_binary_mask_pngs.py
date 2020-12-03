@@ -13,11 +13,11 @@ def process_fold(fold):
     for i in range(0, images.shape[0]):
         cv2.imwrite(os.path.join('data/' + fold + '_images', str(i).zfill(5) + '.png'),
                     images[i].astype(np.unint8))
-        mask = masks[i, :, :, 0] +
-                masks[i, :, :, 1] +
-                masks[i, :, :, 2] +
-                masks[i, :, :, 3] +
-                masks[i, :, :, 4] +
+        mask = masks[i, :, :, 0] + \
+                masks[i, :, :, 1] + \
+                masks[i, :, :, 2] + \
+                masks[i, :, :, 3] + \
+                masks[i, :, :, 4] + \
                 masks[i, :, :, 5]
 
         cv2.imwrite(os.path.join('data/' + fold + '_masks', str(i).zfill(5) + '.png'),
