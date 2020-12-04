@@ -17,7 +17,7 @@ def rle_encode(mask_image):
 
 
 
-def creat_rles():
+def create_rles():
     """Used for Kaggle submission: predicts and encode all test images"""
     dir = 'data/test_masks/'
     N = len(list(os.listdir(dir)))
@@ -31,3 +31,5 @@ def creat_rles():
 
             enc = rle_encode(mask // 255)
             f.write('{},{}\n'.format(i, ' '.join(map(str, enc))))
+
+create_rles()
