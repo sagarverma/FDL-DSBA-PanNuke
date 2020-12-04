@@ -9,18 +9,16 @@ import numpy as np
 from predict import predict_img
 from unet import UNet
 
-# credits to https://stackoverflow.com/users/6076729/manuel-lagunas
-def rle_encode(mask_image):
-    pixels = mask_image.flatten()
-    # We avoid issues with '1' at the start or end (at the corners of
-    # the original image) by setting those pixels to '0' explicitly.
-    # We do not expect these to be non-zero for an accurate mask,
-    # so this should not harm the score.
-    pixels[0] = 0
-    pixels[-1] = 0
-    runs = np.where(pixels[1:] != pixels[:-1])[0] + 2
-    runs[1::2] = runs[1::2] - runs[:-1:2]
-    return runs
+def rle_encode(img):
+    '''
+    img: numpy array, 1 - mask, 0 - background
+    Returns run length as string formated
+    '''
+    pixels = img.flatten()
+    pixels = np.concatenate([[0], pixels, [0]])
+    runs = np.where(pixels[1:] != pixels[:-1])[0] + 1
+    runs[1::2] -= runs[::2]
+    return ' '.join(str(x) for x in runs)
 
 
 def submit(net):
@@ -28,7 +26,7 @@ def submit(net):
     dir = 'data/test/'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     N = len(list(os.listdir(dir)))
-    with open('SUBMISSION.csv', 'a') as f:
+    with open('UNet_SUBMISSION.csv', 'a') as f:
         f.write('img,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             print('{}/{}'.format(index, N))
@@ -37,10 +35,10 @@ def submit(net):
 
             mask = predict_img(net, img, device)
             enc = rle_encode(mask)
-            f.write('{},{}\n'.format(i, ' '.join(map(str, enc))))
+            f.write('{},{}\n'.format(i, enc))
 
 
 if __name__ == '__main__':
     net = UNet(3, 1).cuda()
-    net.load_state_dict(torch.load('MODEL.pth'))
+    net.load_state_dict(torch.load('checkpoints/CP_epoch5.pth'))
     submit(net)
