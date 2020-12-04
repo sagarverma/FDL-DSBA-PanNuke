@@ -16,8 +16,8 @@ from torch.utils.tensorboard import SummaryWriter
 from utils.dataset import BasicDataset
 from torch.utils.data import DataLoader, random_split
 
-dir_img = 'data/fold1_images/'
-dir_mask = 'data/fold1_masks/'
+dir_img = 'data/train_images/'
+dir_mask = 'data/train_masks/'
 dir_checkpoint = 'checkpoints/'
 
 
