@@ -46,7 +46,7 @@ def create_rles():
             enc = rle_encode(mask // 255)
             f.write('{},{}\n'.format(i, enc))
             dec = rle_decode(enc, (256, 256))
-            if np.sum(dec - (mask // 255)) > 0:
+            if np.sum(np.asb(dec - (mask // 255))) > 0:
                 print(N)
 
 create_rles()
