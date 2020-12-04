@@ -14,7 +14,7 @@ def process_fold(fold):
     if not os.path.exists('data/' + fold + '_masks'):
         os.makedirs('data/' + fold + '_masks')
 
-    for i in range(0, images.shape[0]):
+    for i in range(0, masks.shape[0]):
         # cv2.imwrite(os.path.join('data/' + fold + '_images', str(i).zfill(5) + '.png'),
         #             images[i].astype(np.uint8))
         mask = masks[i, :, :, 0] + \
