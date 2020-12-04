@@ -26,7 +26,7 @@ def submit(net):
     dir = 'data/test_images/'
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     N = len(list(os.listdir(dir)))
-    with open('UNet_SUBMISSION.csv', 'a') as f:
+    with open('UNet_SUBMISSION.csv', 'w') as f:
         f.write('img,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             print('{}/{}'.format(index, N))

@@ -35,7 +35,7 @@ def create_rles():
     """Used for Kaggle submission: predicts and encode all test images"""
     dir = 'data/test_masks/'
     N = len(list(os.listdir(dir)))
-    with open('answer_key.csv', 'a') as f:
+    with open('answer_key.csv', 'w') as f:
         f.write('img,rle_mask\n')
         for index, i in enumerate(os.listdir(dir)):
             # print('{}/{}'.format(index, N))
