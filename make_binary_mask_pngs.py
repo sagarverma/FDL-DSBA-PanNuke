@@ -5,6 +5,7 @@ import cv2
 n = 1
 
 def process_fold(fold):
+    global n
     images = np.load('data/' + fold + '/images/' + fold + '/images.npy')
     types = np.load('data/' + fold + '/images/' + fold + '/types.npy')
     masks = np.load('data/' + fold + '/masks/' + fold + '/masks.npy')
