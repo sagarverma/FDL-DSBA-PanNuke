@@ -7,7 +7,7 @@ from PIL import Image
 import numpy as np
 
 from predict import predict_img
-from unet import UNet
+from unet import UNet #Load your model class
 
 def rle_encode(img):
     '''
@@ -39,6 +39,6 @@ def submit(net):
 
 
 if __name__ == '__main__':
-    net = UNet(3, 1).cuda()
-    net.load_state_dict(torch.load('checkpoints/CP_epoch5.pth'))
+    net = UNet(3, 1).cuda() # Instansiate your model
+    net.load_state_dict(torch.load('checkpoints/CP_epoch5.pth')) # Load your model trained weights
     submit(net)
